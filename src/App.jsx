@@ -1,14 +1,20 @@
-import Navbar from "./components/Navbar"
+import Navbar from "./components/Navbar";
+import Movies from "./components/Movies";
+import WatchList from "./components/WatchList";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 function App() {
- 
-
   return (
-    <>
-    <Navbar/>
     
-    </>
-  )
+      <BrowserRouter>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Movies />} />
+          <Route path="/watchlist" element={<WatchList />} />
+        </Routes>
+      </BrowserRouter>
+   
+  );
 }
 
-export default App
+export default App;
