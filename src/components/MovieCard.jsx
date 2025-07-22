@@ -1,12 +1,16 @@
-import React from 'react'
+import React from "react";
 
-function MovieCard() {
+function MovieCard({ poster_path, title }) {
   return (
-    <div className='h-[40vh] w-[200px] bg-cover bg-center rounded-xl mb-5 hover:scale-110 duration-300 hover:cursor-pointer' style={{backgroundImage:`url(https://images-cdn.ubuy.co.in/63ef0a397f1d781bea0a2464-star-wars-rogue-one-movie-poster.jpg)`}}>
-        
-      
+    <div
+      className="h-[40vh] w-[200px] m-2 bg-cover flex items-end bg-center rounded-xl mb-5 hover:scale-110 duration-300 hover:cursor-pointer"
+      style={{
+        backgroundImage: `url(https://image.tmdb.org/t/p/original/${poster_path})`,
+      }}
+    >
+      <div className="bg-gray-400/60 text-center w-full rounded-b-lg  text-xl font-bold">{title}</div>
     </div>
-  )
+  );
 }
 
-export default MovieCard
+export default MovieCard;
