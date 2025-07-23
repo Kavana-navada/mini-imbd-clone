@@ -37,7 +37,7 @@ function Movies() {
       <div className="text-center text-2xl  text-gray-300 p-5 m-5">
         Trending Movies
       </div>
-      <div className="flex flex-row flex-wrap">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8 m-2">
         {movies.map((movieObj) => {
           return (
             <MovieCard
