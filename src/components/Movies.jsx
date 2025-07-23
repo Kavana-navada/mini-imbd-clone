@@ -3,7 +3,7 @@ import MovieCard from "./MovieCard";
 import axios from "axios";
 import Pagination from "./Pagination";
 
-function Movies() {
+function Movies({handleAddToWatchlist,removeFromWatchlist,watchlist}) {
   const [movies, setMovies] = useState([]);
   const [pageNo,setPageNo]=useState(1)
   const apiKey = import.meta.env.VITE_API;
@@ -44,6 +44,10 @@ function Movies() {
               key={movieObj.id}
               poster_path={movieObj.poster_path}
               title={movieObj.original_title}
+              handleAddToWatchlist={handleAddToWatchlist}
+              removeFromWatchlist={removeFromWatchlist}
+              movieObj={movieObj}
+              watchlist={watchlist}
             />
           );
         })}
