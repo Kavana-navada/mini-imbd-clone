@@ -4,6 +4,11 @@ import { FaTrash } from "react-icons/fa";
 function WatchList() {
   return (
     <>
+      <div className="text-gray-300 flex justify-center flex-wrap m-4">
+        <div className="bg-gray-500/10 w-[9rem] h-[2rem] flex justify-center items-center rounded-2xl m-2">Action</div>
+        <div className="border-1 bg-gray-500/10 w-[9rem] h-[2rem] flex justify-center items-center rounded-2xl m-2">Comedy</div>
+
+      </div>
       <div className="flex justify-center my-4">
         <input
           type="text"
