@@ -1,10 +1,25 @@
 import React, { useState } from "react";
-import { FaTrash } from "react-icons/fa";
+import { FaTrash, FaArrowUp, FaArrowDown } from "react-icons/fa";
 
-function WatchList({ watchlist }) {
-  const [search,setSearch]=useState("");
-  let handleSearch=(e)=>{
-    setSearch(e.target.value)
+function WatchList({ watchlist,setWatchlist }) {
+  const [search, setSearch] = useState("");
+  let handleSearch = (e) => {
+    setSearch(e.target.value);
+  };
+
+  let sortAscending=()=>{
+    let sortedAscending= watchlist.sort((movieA,movieB)=>{
+      return movieA.vote_average-movieB.vote_average
+    })
+    setWatchlist([...sortedAscending])
+
+  }
+
+  let sortDecending=()=>{
+    let sortedDecending=watchlist.sort((movieA,movieB)=>{
+      return movieB.vote_average-movieA.vote_average
+    })
+    setWatchlist([...sortedDecending])
 
   }
   return (
@@ -29,39 +44,48 @@ function WatchList({ watchlist }) {
       </div>
 
       <div className="m-8 border border-gray-500 overflow-hidden rounded-lg ">
-        <table className=" text-gray-300 w-full text-center">
-          <thead className="border-b border-gray-500 ">
-            <tr className="bg-gray-500/10 text-xl ">
+        <table className=" text-gray-300 w-full ">
+          <thead className="border-b border-gray-500  text-center ">
+            <tr className="bg-gray-500/10 text-lg ">
               <th className="py-2">Name</th>
-              <th>Ratings</th>
+              <th className="flex gap-2 py-2 items-center justify-center">
+                <FaArrowUp onClick={sortAscending} />
+                <span className="text-right">Ratings</span>
+                <FaArrowDown onClick={sortDecending} />
+              </th>
+
               <th>Popularity</th>
               <th>Genre</th>
               <th></th>
             </tr>
           </thead>
-          <tbody>
-            {watchlist.filter((movieObj)=>{
-              return movieObj.title.toLowerCase().includes(search.toLocaleLowerCase())
-            }).map((movieObj) => {
-              return <tr className="border-b border-gray-500" key={movieObj.id}>
-                <td className="flex items-center px-4 py-4" >
-                  <img
-                    className="h-[6rem] w-[6rem]"
-                    src={`https://image.tmdb.org/t/p/original/${movieObj.poster_path}`}
-                    alt="img"
-                  />
-                  <div className="mx-4">{movieObj.title}</div>
-                </td>
-                <td>{movieObj.vote_average}</td>
-                <td>{movieObj.popularity}</td>
-                <td>Action</td>
-                <td>
-                  <FaTrash color="red" />
-                </td>
-              </tr>;
-            
-            })}
-
+          <tbody className="text-center">
+            {watchlist
+              .filter((movieObj) => {
+                return movieObj.title
+                  .toLowerCase()
+                  .includes(search.toLocaleLowerCase());
+              })
+              .map((movieObj) => {
+                return (
+                  <tr className="border-b border-gray-500" key={movieObj.id}>
+                    <td className="flex items-center px-4 py-4">
+                      <img
+                        className="h-[6rem] w-[6rem]"
+                        src={`https://image.tmdb.org/t/p/original/${movieObj.poster_path}`}
+                        alt="img"
+                      />
+                      <div className="mx-4">{movieObj.title}</div>
+                    </td>
+                    <td>{movieObj.vote_average}</td>
+                    <td>{movieObj.popularity}</td>
+                    <td>Action</td>
+                    <td>
+                      <FaTrash color="red" />
+                    </td>
+                  </tr>
+                );
+              })}
           </tbody>
         </table>
       </div>
