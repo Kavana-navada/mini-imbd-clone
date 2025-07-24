@@ -1,13 +1,16 @@
 import React from "react";
 import { FaTrash } from "react-icons/fa";
 
-function WatchList() {
+function WatchList({ watchlist }) {
   return (
     <>
       <div className="text-gray-300 flex justify-center flex-wrap m-4">
-        <div className="bg-gray-500/10 w-[9rem] h-[2rem] flex justify-center items-center rounded-2xl m-2">Action</div>
-        <div className="border-1 bg-gray-500/10 w-[9rem] h-[2rem] flex justify-center items-center rounded-2xl m-2">Comedy</div>
-
+        <div className="bg-gray-500/10 w-[9rem] h-[2rem] flex justify-center items-center rounded-2xl m-2">
+          Action
+        </div>
+        <div className="border-1 bg-gray-500/10 w-[9rem] h-[2rem] flex justify-center items-center rounded-2xl m-2">
+          Comedy
+        </div>
       </div>
       <div className="flex justify-center my-4">
         <input
@@ -28,35 +31,26 @@ function WatchList() {
             </tr>
           </thead>
           <tbody>
-            <tr className="border-b border-gray-500">
-              <td className="flex items-center px-4 py-4">
-                <img
-                  className="h-[6rem] w-[6rem]"
-                  src={`https://m.media-amazon.com/images/I/5151N2hUPiL._UF1000,1000_QL80_.jpg`}
-                  alt="img"
-                />
-                <div className="mx-4">XYZ</div>
-              </td>
-              <td>7.5</td>
-              <td>9</td>
-              <td>Action</td>
-              <td><FaTrash color="red"/></td>
-            </tr>
+            {watchlist.map((movieObj) => {
+              return <tr className="border-b border-gray-500" key={movieObj.id}>
+                <td className="flex items-center px-4 py-4" >
+                  <img
+                    className="h-[6rem] w-[6rem]"
+                    src={`https://image.tmdb.org/t/p/original/${movieObj.poster_path}`}
+                    alt="img"
+                  />
+                  <div className="mx-4">{movieObj.original_title}</div>
+                </td>
+                <td>{movieObj.vote_average}</td>
+                <td>{movieObj.popularity}</td>
+                <td>Action</td>
+                <td>
+                  <FaTrash color="red" />
+                </td>
+              </tr>;
+            
+            })}
 
-             <tr className="border-b-1">
-              <td className="flex items-center px-4 py-4">
-                <img
-                  className="h-[6rem] w-[6rem]"
-                  src={`https://m.media-amazon.com/images/I/5151N2hUPiL._UF1000,1000_QL80_.jpg`}
-                  alt="img"
-                />
-                <div className="mx-4">XYZ</div>
-              </td>
-              <td>7.5</td>
-              <td>9</td>
-              <td>Action</td>
-              <td><FaTrash/></td>
-            </tr>
           </tbody>
         </table>
       </div>
