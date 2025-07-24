@@ -43,7 +43,7 @@ function Movies({handleAddToWatchlist,removeFromWatchlist,watchlist}) {
             <MovieCard
               key={movieObj.id}
               poster_path={movieObj.poster_path}
-              title={movieObj.original_title}
+              title={movieObj.title}
               handleAddToWatchlist={handleAddToWatchlist}
               removeFromWatchlist={removeFromWatchlist}
               movieObj={movieObj}

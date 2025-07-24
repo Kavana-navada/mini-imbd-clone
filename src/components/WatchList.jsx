@@ -1,7 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaTrash } from "react-icons/fa";
 
 function WatchList({ watchlist }) {
+  const [search,setSearch]=useState("");
+  let handleSearch=(e)=>{
+    setSearch(e.target.value)
+
+  }
   return (
     <>
       <div className="text-gray-300 flex justify-center flex-wrap m-4">
@@ -12,13 +17,17 @@ function WatchList({ watchlist }) {
           Comedy
         </div>
       </div>
+
       <div className="flex justify-center my-4">
         <input
           type="text"
           className="text-gray-300 border-gray-500 border-1 h-[2.5rem] w-[18rem] bg-gray-500/10 text-xl pl-2 outline-none"
           placeholder="Search Movies..."
+          onChange={handleSearch}
+          value={search}
         />
       </div>
+
       <div className="m-8 border border-gray-500 overflow-hidden rounded-lg ">
         <table className=" text-gray-300 w-full text-center">
           <thead className="border-b border-gray-500 ">
@@ -31,7 +40,9 @@ function WatchList({ watchlist }) {
             </tr>
           </thead>
           <tbody>
-            {watchlist.map((movieObj) => {
+            {watchlist.filter((movieObj)=>{
+              return movieObj.title.toLowerCase().includes(search.toLocaleLowerCase())
+            }).map((movieObj) => {
               return <tr className="border-b border-gray-500" key={movieObj.id}>
                 <td className="flex items-center px-4 py-4" >
                   <img
@@ -39,7 +50,7 @@ function WatchList({ watchlist }) {
                     src={`https://image.tmdb.org/t/p/original/${movieObj.poster_path}`}
                     alt="img"
                   />
-                  <div className="mx-4">{movieObj.original_title}</div>
+                  <div className="mx-4">{movieObj.title}</div>
                 </td>
                 <td>{movieObj.vote_average}</td>
                 <td>{movieObj.popularity}</td>
