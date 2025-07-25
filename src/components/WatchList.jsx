@@ -1,12 +1,19 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaTrash, FaArrowUp, FaArrowDown } from "react-icons/fa";
 import genreid from "../Utility/genre"
 
-function WatchList({ watchlist,setWatchlist }) {
+function WatchList({ watchlist,setWatchlist,removeFromWatchlist }) {
   const [search, setSearch] = useState("");
+  const [genreList,setGenreList]=useState(["All"])
+  const [currentGenre,setCurrentGenere]=useState("All")
+
   let handleSearch = (e) => {
     setSearch(e.target.value);
   };
+
+  let handleFilter=(genre)=>{
+    setCurrentGenere(genre)
+  }
 
   let sortAscending=()=>{
     let sortedAscending= watchlist.sort((movieA,movieB)=>{
@@ -23,15 +30,27 @@ function WatchList({ watchlist,setWatchlist }) {
     setWatchlist([...sortedDecending])
 
   }
+
+  useEffect(()=>{
+    let temp=watchlist.map((movieObj)=>{
+      return genreid[movieObj.genre_ids[0]]
+    })
+    temp=new Set(temp)
+    setGenreList(["All",...temp])
+    
+    
+  },[watchlist])
+  console.log("genre",genreList)
+ 
   return (
     <>
       <div className="text-gray-300 flex justify-center flex-wrap m-4">
-        <div className="bg-gray-500/10 w-[9rem] h-[2rem] flex justify-center items-center rounded-2xl m-2">
-          Action
-        </div>
-        <div className="border-1 bg-gray-500/10 w-[9rem] h-[2rem] flex justify-center items-center rounded-2xl m-2">
-          Comedy
-        </div>
+        {genreList.map((genre,index)=>{
+          return <div key={index} onClick={()=>handleFilter(genre)} className={`bg-gray-500/10 w-[9rem] h-[2rem] flex justify-center items-center rounded-2xl m-2 hover:cursor-pointer ${currentGenre===genre?"border-1":""}`}>
+          {genre}
+        </div>}
+        )}
+        
       </div>
 
       <div className="flex justify-center my-4">
@@ -61,7 +80,16 @@ function WatchList({ watchlist,setWatchlist }) {
             </tr>
           </thead>
           <tbody className="text-center">
-            {watchlist
+            {watchlist.filter((movieObj)=>{
+              if (currentGenre=="All"){
+                return true
+              }else{
+                return genreid[movieObj.genre_ids[0]]==currentGenre
+
+              }
+              
+
+            })
               .filter((movieObj) => {
                 return movieObj.title
                   .toLowerCase()
@@ -82,7 +110,7 @@ function WatchList({ watchlist,setWatchlist }) {
                     <td>{movieObj.popularity}</td>
                     <td>{genreid[movieObj.genre_ids[0]]}</td>
                     <td>
-                      <FaTrash color="red" />
+                      <FaTrash color="red" onClick={()=>removeFromWatchlist(movieObj)}/>
                     </td>
                   </tr>
                 );
