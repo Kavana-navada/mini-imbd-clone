@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { FaTrash, FaArrowUp, FaArrowDown } from "react-icons/fa";
+import genreid from "../Utility/genre"
 
 function WatchList({ watchlist,setWatchlist }) {
   const [search, setSearch] = useState("");
@@ -79,7 +80,7 @@ function WatchList({ watchlist,setWatchlist }) {
                     </td>
                     <td>{movieObj.vote_average}</td>
                     <td>{movieObj.popularity}</td>
-                    <td>Action</td>
+                    <td>{genreid[movieObj.genre_ids[0]]}</td>
                     <td>
                       <FaTrash color="red" />
                     </td>

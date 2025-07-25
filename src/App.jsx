@@ -20,6 +20,7 @@ function App() {
 
     setWatchlist(filteredWatchlist);
   };
+  console.log(watchlist)
   
   useEffect(()=>{
     let moviesFromLocalStorage=localStorage.getItem('moviesApp')
