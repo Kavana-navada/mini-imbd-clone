@@ -114,8 +114,9 @@ VITE_API=your_tmdb_api_key
 ### 🔁 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/react-movie-watchlist.git
-cd react-movie-watchlist
+
+git clone https://github.com/Kavana-navada/mini-imbd-clone.git
+cd mini-imbd-clone
 ```
 
 ### 📦 2. Install Dependencies
