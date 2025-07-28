@@ -115,8 +115,8 @@ VITE_API=your_tmdb_api_key
 
 ```bash
 
-git clone https://github.com/Kavana-navada/mini-imbd-clone.git
-cd mini-imbd-clone
+git clone https://github.com/Kavana-navada/mini-imdb-clone.git
+cd mini-imdb-clone
 ```
 
 ### 📦 2. Install Dependencies
