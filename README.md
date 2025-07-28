@@ -1,12 +1,145 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# 🎬 Mini Imdb Clone
 
-Currently, two official plugins are available:
+A responsive and interactive web application built using **React** that allows users to:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Browse trending movies from **The Movie Database (TMDB) API**
+- Add/remove movies to a **personal watchlist** (stored in `localStorage`)
+- Filter movies by genre
+- Search watchlisted movies by **movie title**
+- Sort watchlisted movies by **rating**
+- Navigate between pages using **React Router**
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🚀 Features
+
+- 🌐 **Trending Movies Page** with pagination
+- ❤️ **Add to/Remove from Watchlist**
+- 🔍 **Search** and 🎯 **Genre-based filtering**
+- 🔼🔽 **Sort movies** by rating (ascending/descending)
+- 💾 Persistent data storage using `localStorage`
+- 🎨 Styled using **TailwindCSS**
+- 📦 API integration using `axios`
+
+---
+
+## 📸 Screenshots
+
+
+<details>
+  <summary>Movie List Page (Trending Movies)</summary>
+
+  - Displays popular movies with poster & title
+  - Click 😍 to add/remove from watchlist
+  - Responsive grid layout
+
+</details>
+<img src="Screenshots/banner.png" alt="Banner" width="600"/>
+Trending movies
+<img src="Screenshots/trending.png" alt="trending" width="600"/>
+
+
+<details>
+  <summary>Watchlist Page</summary>
+
+  - Lists all added movies with filtering, searching & sorting options
+  - Displays poster, title, rating, popularity & genre
+  - Option to remove from watchlist
+
+</details>
+<img src="Screenshots/watchlist.png" alt="Watchlist" width="600"/>
+
+Filter and search functonality
+
+<img src="Screenshots/filter.png" alt="filter" width="600"/>
+
+---
+
+## 🛠️ Tech Stack
+
+| Technology       | Usage                        |
+|------------------|------------------------------|
+| React            | Frontend framework           |
+| React Router     | Routing                      |
+| Axios            | API calls to TMDB            |
+| TailwindCSS      | Styling                      |
+| LocalStorage     | Persisting watchlist         |
+| TMDB API         | Movie data source            |
+| Vite             | Fast bundling and development server |
+
+---
+
+## 🧾 Folder Structure
+
+```bash
+public/
+├── logo.png
+src/
+├── components/
+│ ├── Banner.jsx
+│ ├── MovieCard.jsx
+│ ├── Movies.jsx
+│ ├── Navbar.jsx
+│ ├── Pagination.jsx
+│ └── WatchList.jsx
+├── Utility/
+│ └── genre.js
+├── App.jsx
+├── index.css
+└── main.jsx
+├── .env
+
+```
+
+---
+
+
+## 🔑 TMDB API Key Setup
+
+1. Create a free account at [TMDB](https://www.themoviedb.org/)
+2. Get your API key from your profile > Settings > API
+3. Create a `.env` file in the root of the project and add:
+4. Add the following line:
+
+```bash
+VITE_API=your_tmdb_api_key
+```
+
+5. Restart your development server.
+
+---
+## 🚀 Getting Started
+
+### 🔁 1. Clone the Repository
+
+```bash
+git clone https://github.com/your-username/react-movie-watchlist.git
+cd react-movie-watchlist
+```
+
+### 📦 2. Install Dependencies
+
+```bash
+npm install
+```
+
+### 🧪 3. Run the Development Server
+```bash
+npm run dev
+```
+App will be available at: http://localhost:5173
+
+### 🏁 4. Build for Production
+```bash
+npm run build
+```
+
+---
+
+## 🙌 Acknowledgements
+- TMDB - The Movie Database
+- React
+- Tailwind CSS
+- Vite
+
