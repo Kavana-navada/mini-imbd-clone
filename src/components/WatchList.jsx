@@ -63,9 +63,9 @@ function WatchList({ watchlist,setWatchlist,removeFromWatchlist }) {
         />
       </div>
 
-      <div className="m-8 border border-gray-500 overflow-hidden rounded-lg ">
+      <div className="m-8 border border-gray-500 rounded-lg overflow-x-auto">
         <table className=" text-gray-300 w-full ">
-          <thead className="border-b border-gray-500  text-center ">
+          <thead className="border-b border-gray-500  text-center " >
             <tr className="bg-gray-500/10 text-lg ">
               <th className="py-2">Name</th>
               <th className="flex gap-2 py-2 items-center justify-center">
@@ -106,8 +106,8 @@ function WatchList({ watchlist,setWatchlist,removeFromWatchlist }) {
                       />
                       <div className="mx-4">{movieObj.title}</div>
                     </td>
-                    <td>{movieObj.vote_average}</td>
-                    <td>{movieObj.popularity}</td>
+                    <td>{movieObj.vote_average.toFixed(1)}</td>
+                    <td>{movieObj.popularity.toFixed(2)}</td>
                     <td>{genreid[movieObj.genre_ids[0]]}</td>
                     <td>
                       <FaTrash color="red" onClick={()=>removeFromWatchlist(movieObj)}/>
